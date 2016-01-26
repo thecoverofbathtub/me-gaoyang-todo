@@ -1,0 +1,30 @@
+{
+  "name": "yang's-personal-website",
+  "version": "0.0.1",
+  "description": "Yang's personal website",
+  "main": "main.js",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thecoverofbathtub/my-personal-website.git"
+  },
+  "keywords": [
+    "yang"
+  ],
+  "author": "thecoverofbathtub",
+  "bugs": {
+    "url": "https://github.com/thecoverofbathtub/my-personal-website/issues"
+  },
+  "homepage": "http://gaoyang.me",
+  "engines": {
+    "node": "0.12.x"
+  }
+}
