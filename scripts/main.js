@@ -38,46 +38,79 @@ const todosReducer = (items = [], action) => {
 
 const store = createStore(todosReducer);
 
-class App extends React.Component {
-	setDate(data) {
-		this.setSta
+class TodoInput extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.handleAdd = this.handleAdd.bind(this);
 	}
+
+	handleAdd() {
+		if (!this.input.value) {
+			return;
+		}
+		store.dispatch({
+			type: 'ADD',
+			id: uuid.v4(),
+			text: this.input.value
+		});
+		this.input.value = "";
+	}
+
+	render() {
+		return (
+			<div>
+	        	<input
+	        		type="text"
+	        		placeholder="Todo"
+	        		ref={ (c) => {
+	        			this.input = c;
+	        		}}
+	        		onKeyPress={ (e) => {
+	        			if (e.key === 'Enter') {
+	        				this.handleAdd();
+	        			}
+	        		}}
+	        	/>
+	        	<button onClick={this.handleAdd}>
+	        		Add
+	        	</button>
+	        </div>
+		);
+	}
+}
+
+class TodoList extends React.Component {
+	render() {
+		return (
+			<div><ul>
+        		{this.props.data.map( todo =>
+        			<li key={todo.id}
+        				onClick={ () => {
+        					store.dispatch({
+        						type: 'TOGGLE',
+        						id: todo.id
+        					})
+        				}}
+        				style={{
+        					textDecoration:
+        						todo.completed ? 'line-through' : 'none'
+        				}}>
+        				{todo.text}
+        			</li>
+        		)}
+        	</ul></div>
+	    );
+	}
+}
+
+class App extends React.Component {
     render() {
     	console.log("Called render()");
         return (
         	<div>
-	        	<input
-	        		type="text"
-	        		placeholder="Todo"
-	        		ref={ (c) => { this.input = c; }
-	        	} />
-	        	<button onClick={ () => {
-	        		store.dispatch({
-	        			type: 'ADD',
-	        			id: uuid.v4(),
-	        			text: this.input.value
-	        		});
-	        		this.input.value = "";
-	        	}}>
-	        		Add
-	        	</button>
-	        	<ul>
-	        		{this.props.data.map( todo =>
-	        			<li key={todo.id}
-	        				onClick={ () => {
-	        					store.dispatch({
-	        						type: 'TOGGLE',
-	        						id: todo.id
-	        					})
-	        				}}
-	        				style={{
-	        					textDecoration:
-	        						todo.completed ? 'line-through' : 'none'
-	        				}}>
-	        				{todo.text}
-	        			</li>
-	        		)}
-	        	</ul>
+	        	<TodoInput />
+	        	<TodoList data={this.props.data} />
 	        </div>
         );
     }
