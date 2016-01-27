@@ -81,10 +81,23 @@ class TodoInput extends React.Component {
 }
 
 class TodoList extends React.Component {
+	componeneDidMount() {
+		this.unsubscribe = store.subscribe( () => 
+			this.forceUpdate()
+		);
+	}
+
+	componeneWillUnmount() {
+		this.unsubscribe();
+	}
+
 	render() {
+		const props = this.props;
+		const state = store.getState();
+
 		return (
 			<div><ul>
-        		{this.props.data.map( todo =>
+        		{state.map( todo =>
         			<li key={todo.id}
         				onClick={ () => {
         					store.dispatch({
@@ -110,21 +123,33 @@ class App extends React.Component {
         return (
         	<div>
 	        	<TodoInput />
-	        	<TodoList data={this.props.data} />
+	        	<TodoList />
 	        </div>
         );
     }
 }
 
+/*
+const App = () => (
+	<div>
+		<TodoInput />
+		<TodoList />
+	</div>
+);
+*/
+
 const renderAll = () => {
 	ReactDOM.render(
-		<App data={store.getState()} />,
+		<App />,
 	    document.getElementById('app-root')
 	);
 };
 
+/*
 store.subscribe(() => {
 	console.log(store.getState());
 	renderAll();
 });
+*/
+
 renderAll();
