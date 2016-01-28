@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import { Provider, connect } from 'react-redux'
 import uuid from 'uuid'
 
 const todoReducer = (item, action) => {
@@ -36,8 +37,6 @@ const todosReducer = (items = [], action) => {
 	}
 };
 
-const store = createStore(todosReducer);
-
 class TodoInput extends React.Component {
 
 	constructor(props) {
@@ -49,7 +48,7 @@ class TodoInput extends React.Component {
 		if (!this.input.value) {
 			return;
 		}
-		store.dispatch({
+		this.context.store.dispatch({
 			type: 'ADD',
 			id: uuid.v4(),
 			text: this.input.value
@@ -79,28 +78,31 @@ class TodoInput extends React.Component {
 		);
 	}
 }
+TodoInput.contextTypes = {
+	store: React.PropTypes.object
+};
 
 class TodoList extends React.Component {
-	componeneDidMount() {
-		this.unsubscribe = store.subscribe( () => 
+	componentDidMount() {
+		this.unsubscribe = this.context.store.subscribe( () => 
 			this.forceUpdate()
 		);
 	}
 
-	componeneWillUnmount() {
+	componentWillUnmount() {
 		this.unsubscribe();
 	}
 
 	render() {
 		const props = this.props;
-		const state = store.getState();
+		const state = this.context.store.getState();
 
 		return (
 			<div><ul>
         		{state.map( todo =>
         			<li key={todo.id}
         				onClick={ () => {
-        					store.dispatch({
+        					this.context.store.dispatch({
         						type: 'TOGGLE',
         						id: todo.id
         					})
@@ -116,40 +118,20 @@ class TodoList extends React.Component {
 	    );
 	}
 }
+TodoList.contextTypes = {
+	store: React.PropTypes.object
+};
 
-class App extends React.Component {
-    render() {
-    	console.log("Called render()");
-        return (
-        	<div>
-	        	<TodoInput />
-	        	<TodoList />
-	        </div>
-        );
-    }
-}
-
-/*
 const App = () => (
 	<div>
 		<TodoInput />
 		<TodoList />
 	</div>
 );
-*/
 
-const renderAll = () => {
-	ReactDOM.render(
-		<App />,
-	    document.getElementById('app-root')
-	);
-};
-
-/*
-store.subscribe(() => {
-	console.log(store.getState());
-	renderAll();
-});
-*/
-
-renderAll();
+ReactDOM.render(
+	<Provider store={createStore(todosReducer)}>
+		<App />
+	</Provider>,
+    document.getElementById('app-root')
+);
