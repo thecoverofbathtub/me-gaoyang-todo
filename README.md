@@ -4,9 +4,9 @@ Yang's Personal Website
 # Set up
 
 ## Installation
-1. `sudo npm install --save react react-dom babelify babel-preset-react`
-2. `sudo npm install --save redux react-redux uuid`
-2. `sudo npm install --save-dev redux-devtools`
-4. `sudo npm install --save-dev babel-preset-es2015 babel-preset-stage-2`
-3. `sudo npm install -g browserify`
-4. `browserify -t [ babelify --presets [ react ] ] scripts/main.js -o bundle.js`
+1. `sudo npm install -g browserify`
+2. `sudo npm install -g react react-dom redux react-redux uuid`
+3. `sudo npm install -g babel-preset-react babel-preset-es2015 babel-preset-stage-2`
+4. `sudo npm install --save-dev babelify`
+5. `sudo npm install --save-dev redux-devtools`
+6. `browserify -t [ babelify --presets [ react ] ] scripts/main.js -o bundle.js`
