@@ -39,9 +39,9 @@ export function authReducer(state = initialState, action) {
 	}
 }
 
-export function authRouteResolver(state) {
+export function authRouteResolver(getState) {
 	return (nextState, replace) => {
-		const auth = state.auth;
+		const { auth } = getState();
 		const { pathname } = nextState.location;
 		
 		if (!auth.authenticated && pathname !== SIGN_IN_PATH) {
