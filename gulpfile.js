@@ -1,9 +1,19 @@
 'use strict'
 
 const gulp = require('gulp');
+const del = require('del');
 const browserify = require('browserify');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
+
+const config = {
+	targetDir: './build',
+	target: 'bundle.js'
+};
+
+function clean() {
+	del(config.targetDir);
+}
 
 function compile() {
 
@@ -21,8 +31,9 @@ function compile() {
 			console.error(err);
 			bundler.emit('end');
 		})
-		.pipe(source('bundle.js'))
-		.pipe(gulp.dest('./build'));
+		.pipe(source(config.target))
+		.pipe(gulp.dest(config.targetDir));
 }
 
-gulp.task('default', () => { return compile() });
+gulp.task('clean', () => { return clean(); });
+gulp.task('default', () => { return compile(); });
