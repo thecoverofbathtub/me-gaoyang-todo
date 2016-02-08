@@ -6,13 +6,15 @@ import thunk from 'redux-thunk'
 // Reducers
 import { authReducer } from 'modules/auth';
 import { firebaseReducer } from 'modules/firebase';
+import { storiesReducer } from 'modules/stories';
 
 export const history = createBrowserHistory();
 
 const reducer = combineReducers({
 	auth: authReducer,
 	firebase: firebaseReducer,
-	routing: routeReducer
+	routing: routeReducer,
+	stories: storiesReducer
 });
 
 export default (initialState) => {

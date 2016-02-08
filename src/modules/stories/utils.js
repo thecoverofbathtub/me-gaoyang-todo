@@ -33,8 +33,10 @@ export function storiesReducer(state=initialState, action) {
 			}
 
 		// ???
+		/*
 		case SIGN_OUT_SUCCESS:
 			return state;
+		*/
 
 		default:
 			return state;

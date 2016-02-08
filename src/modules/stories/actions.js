@@ -74,7 +74,7 @@ export function registerFirebaseListeners() {
 			payload: unpackSnapshot(snapshot)
 		}));
 
-		ref.on('child_deleted', snapshot => dispatch({
+		ref.on('child_removed', snapshot => dispatch({
 			type: DELETE_STORY_SUCCESS,
 			payload: unpackSnapshot(snapshot)
 		}));
