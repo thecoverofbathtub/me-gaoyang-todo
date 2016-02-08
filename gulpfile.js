@@ -8,11 +8,12 @@ const source = require('vinyl-source-stream');
 
 const config = {
 	targetDir: './build',
-	target: 'bundle.js'
+	target: 'bundle.js',
+    clean: ['./build', './src/bundle.js']
 };
 
 function clean() {
-	del(config.targetDir);
+	del(config.clean);
 }
 
 function compile() {

@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 
 export class Home extends Component {
 
+	componentWillMount() {
+		this.props.registerListeners();
+	}
+
 	render() {
 		return (
 			<div>HOME</div>
@@ -10,7 +14,6 @@ export class Home extends Component {
 	}
 }
 
-// uses auth modules
 export default connect(state => ({
-	auth: state.auth
+	stories : state.stories.items    // use items instead of entire stories state
 }))(Home);
