@@ -1,10 +1,10 @@
 import {
-  CREATE_TASK_ERROR,
-  CREATE_TASK_SUCCESS,
-  DELETE_TASK_ERROR,
-  DELETE_TASK_SUCCESS,
-  UPDATE_TASK_ERROR,
-  UPDATE_TASK_SUCCESS
+  CREATE_STORY_ERROR,
+  CREATE_STORY_SUCCESS,
+  DELETE_STORY_ERROR,
+  DELETE_STORY_SUCCESS,
+  UPDATE_STORY_ERROR,
+  UPDATE_STORY_SUCCESS
 } from './action-types';
 
 export function createStory(title) {
@@ -16,7 +16,7 @@ export function createStory(title) {
 				if (error) {
 					console.error('ERROR @ createStory :', error);
 					dispatch({
-						type: CREATE_TASK_ERROR,
+						type: CREATE_STORY_ERROR,
 						payload: error
 					});
 				}
@@ -34,7 +34,7 @@ export function updateStory(story) {
 				if (error) {
 					console.error('ERROR @ updateStory :', error);
 					dispatch({
-						type: UPDATE_TASK_ERROR,
+						type: UPDATE_STORY_ERROR,
 						payload: error
 					});
 				}
@@ -51,7 +51,7 @@ export function deleteStory(story) {
 				if (error) {
 					console.error('ERROR @ deleteStory :', error);
 					dispatch({
-						type: DELETE_TASK_ERROR,
+						type: DELETE_STORY_ERROR,
 						payload: error
 					});
 				}
