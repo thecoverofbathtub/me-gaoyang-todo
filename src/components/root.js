@@ -6,9 +6,9 @@ import { Route, Router } from 'react-router';
 import { SIGN_IN_PATH, HOME_PATH } from 'config';
 
 // Components
-import App from 'components/app';
-import SignIn from 'components/sign-in'
-import Home from 'components/home'
+import App from './app/app';
+import SignIn from './sign-in/sign-in'
+import Home from './home/home'
 
 export class Root extends Component {
 	

@@ -18,7 +18,6 @@ const reducer = combineReducers({
 });
 
 export default (initialState) => {
-	const history = createBrowserHistory();
 	const rrr = syncHistory(history);
 
 	const store = applyMiddleware(

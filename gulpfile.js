@@ -1,15 +1,31 @@
 'use strict'
 
 const gulp = require('gulp');
-const del = require('del');
+const sass = require('gulp-sass');
+const gutil = require('gulp-util');
+const browserSync = require('browser-sync');
 const browserify = require('browserify');
 const babelify = require('babelify');
+const del = require('del');
 const source = require('vinyl-source-stream');
 
+const paths = {
+    buildDir: './build',
+    cssSubDir: '/assets/styles',
+    bundleJs: 'bundle.js'
+};
+
 const config = {
-	targetDir: './build',
-	target: 'bundle.js',
-    clean: ['./build', './src/bundle.js']
+    browserSync: {
+        files: [paths.buildDir + '/**/*'],
+        notify: false,
+        open: false,
+        port: 3000,
+        server: {
+            baseDir: paths.buildDir
+        }
+    },
+    clean: [paths.buildDir]
 };
 
 function clean() {
@@ -32,9 +48,38 @@ function compile() {
 			console.error(err);
 			bundler.emit('end');
 		})
-		.pipe(source(config.target))
-		.pipe(gulp.dest(config.targetDir));
+		.pipe(source(paths.bundleJs))
+		.pipe(gulp.dest(paths.buildDir));
 }
 
-gulp.task('clean', () => { return clean(); });
-gulp.task('default', () => { return compile(); });
+function buildSass() {
+    gulp.src('./src/styles/**/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest(paths.buildDir + paths.cssSubDir))
+}
+
+function deploy() {
+    gulp.src('./src/index.html')
+		.pipe(gulp.dest(paths.buildDir));
+}
+
+function serve() {
+    browserSync.init(config.browserSync);
+}
+
+gulp.task('clean', () => {
+    clean();
+});
+
+gulp.task('build', ['clean'], () => {
+    compile();
+    buildSass();
+    deploy();
+})
+
+gulp.task('default', ['clean', 'build'], () => {
+    serve();
+    gutil.log('Start serving on localhost:3000', 'Really it did', gutil.colors.magenta('123'));
+})
+
+// TODO: gulp watch

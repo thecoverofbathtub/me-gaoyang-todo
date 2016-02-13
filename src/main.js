@@ -1,8 +1,7 @@
 // main.js
-import Firebase from 'firebase'
+import Firebase from 'firebase';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
 
 import { FIREBASE_URL } from 'config';
 import { Root } from 'components/root';
