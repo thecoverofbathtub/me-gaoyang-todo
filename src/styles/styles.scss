@@ -1,5 +1,5 @@
 @import
-"base";
+"settings";
 
 @import
 "grid",
@@ -7,4 +7,11 @@
 
 ::selection {
   background: #559565;
+}
+
+body {
+  background-color: $base-background-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
 }

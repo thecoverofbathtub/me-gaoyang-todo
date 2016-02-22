@@ -1,7 +1,7 @@
 'use strict'
 
 const gulp = require('gulp');
-const sass = require('gulp-sass');
+const gplugins = require('gulp-load-plugins')();
 const gutil = require('gulp-util');
 const browserSync = require('browser-sync');
 const browserify = require('browserify');
@@ -10,22 +10,26 @@ const del = require('del');
 const source = require('vinyl-source-stream');
 
 const paths = {
-    buildDir: './build',
-    cssSubDir: '/assets/styles',
-    bundleJs: 'bundle.js'
+    buildPath: './build',
+    scssDepPaths: [
+        './bower_components/foundation-sites/scss',
+        './bower_components/motion-ui/src',
+        './src/styles'
+    ],
+    cssPath: '/assets/styles'
 };
 
 const config = {
     browserSync: {
-        files: [paths.buildDir + '/**/*'],
+        files: [paths.buildPath + '/**/*'],
         notify: false,
         open: false,
         port: 3000,
         server: {
-            baseDir: paths.buildDir
+            baseDir: paths.buildPath
         }
     },
-    clean: [paths.buildDir]
+    clean: [paths.buildPath]
 };
 
 function clean() {
@@ -48,38 +52,50 @@ function compile() {
 			console.error(err);
 			bundler.emit('end');
 		})
-		.pipe(source(paths.bundleJs))
-		.pipe(gulp.dest(paths.buildDir));
+		.pipe(source('bundle.js'))
+		.pipe(gulp.dest(paths.buildPath));
 }
 
-function buildSass() {
+function sass() {
     gulp.src('./src/styles/**/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest(paths.buildDir + paths.cssSubDir))
+        .pipe(gplugins.sass({
+            includePaths: paths.scssDepPaths
+        }).on('error', gplugins.sass.logError))
+        .pipe(gplugins.autoprefixer({
+            browsers: ['last 2 versions', 'ie >= 9']
+        }))
+        .pipe(gulp.dest(
+            paths.buildPath + paths.cssPath
+        ));
 }
 
 function deploy() {
     gulp.src('./src/index.html')
-		.pipe(gulp.dest(paths.buildDir));
+		.pipe(gulp.dest(paths.buildPath));
 }
 
 function serve() {
     browserSync.init(config.browserSync);
 }
 
-gulp.task('clean', () => {
-    clean();
-});
+function watch() {
+    gulp.watch(['./src/styles/**/*.scss'], ['sass']);
+}
+
+gulp.task('clean', clean);
+
+gulp.task('sass', sass);
 
 gulp.task('build', ['clean'], () => {
     compile();
-    buildSass();
+    sass();
     deploy();
-})
+});
 
 gulp.task('default', ['clean', 'build'], () => {
+    watch();
     serve();
-    gutil.log('Start serving on localhost:3000', 'Really it did', gutil.colors.magenta('123'));
-})
+    console.log('Start serving on', gutil.colors.magenta('localhost:3000'));
+});
 
 // TODO: gulp watch

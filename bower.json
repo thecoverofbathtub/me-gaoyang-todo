@@ -1,0 +1,21 @@
+{
+  "name": "my-personal-website",
+  "version": "0.0.1",
+  "authors": [
+    "ZURB <me@gaoyang.me>"
+  ],
+  "description": "Yang's personal website",
+  "main": "index.html",
+  "dependencies": {
+    "foundation-sites": "~6.1.0",
+    "motion-ui": "~1.1.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}

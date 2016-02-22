@@ -2,24 +2,42 @@
 //  SIGN-IN
 //===================================================================
 
+@import
+"settings";
+
+@import
+'foundation';
+
 .sign-in {
-	margin-top: 180px;
+  margin-top: 90px;
+  max-width: 300px;
 }
 
 .sign-in__heading {
-	font-size: 30px;
-	font-weight: 300;
-	text-align: center;
+  margin-bottom: 36px;
+  color: $base-font-color;
+  font: inherit;
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
 }
 
 .sign-in__button {
-	@include button-base;
-	border: 1px solid #555;
-	padding: 0;
-	line-height: 48px;
+  @include button-hollow;
 
-	&:hover {
-		border: 2px solid #aaa;
-		line-height: 180px;
-	}
+  margin-bottom: 10px;
+  outline: none;
+  width: 100%;
+  border: 1px solid #eee;
+  padding: 0;
+  height: 40px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 40px;
+  color: $base-font-color;
+
+  &:hover {
+    border: 2px solid #bbb;
+    line-height: 38px;
+  }
 }

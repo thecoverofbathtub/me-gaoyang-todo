@@ -2,11 +2,14 @@
 //  GRID
 //===================================================================
 
+@import
+'foundation';
+
 .g-row {
-	background: #00ff00;
+	@include grid-row;
 }
 
 .g-col {
-	background: #ff0000;
+	@include grid-col;
 	width: 100%;
 }

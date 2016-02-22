@@ -1,5 +1,6 @@
 .DS_Store
 .idea/
 build/
+bower_components/
 node_modules/
 src/bundle.js
