@@ -30,14 +30,14 @@
   width: 100%;
   border: 1px solid #eee;
   padding: 0;
-  height: 40px;
+  height: 48px;
   font-family: inherit;
-  font-size: inherit;
-  line-height: 40px;
+  font-size: rem-calc(18px);
+  line-height: 48px;
   color: $base-font-color;
 
   &:hover {
     border: 2px solid #bbb;
-    line-height: 38px;
+    line-height: 46px;
   }
 }

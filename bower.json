@@ -8,6 +8,7 @@
   "main": "index.html",
   "dependencies": {
     "foundation-sites": "~6.1.0",
+    "foundation-icon-fonts": "git://github.com/zurb/foundation-icon-fonts.git#afed003521",
     "motion-ui": "~1.1.0"
   },
   "ignore": [

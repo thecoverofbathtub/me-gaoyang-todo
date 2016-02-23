@@ -14,7 +14,11 @@ const paths = {
     scssDepPaths: [
         './bower_components/foundation-sites/scss',
         './bower_components/motion-ui/src',
+        './bower_components/foundation-icon-fonts',
         './src/styles'
+    ],
+    cssDepPaths: [
+        './bower_components/foundation-icon-fonts/foundation-icons.*'
     ],
     cssPath: '/assets/styles'
 };
@@ -70,6 +74,10 @@ function sass() {
 }
 
 function deploy() {
+    paths.cssDepPaths.forEach(i => {
+        gulp.src(i).pipe(gulp.dest(paths.buildPath + paths.cssPath))
+    });
+
     gulp.src('./src/index.html')
 		.pipe(gulp.dest(paths.buildPath));
 }

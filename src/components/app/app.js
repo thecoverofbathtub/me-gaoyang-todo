@@ -34,13 +34,22 @@ export class App extends Component {
 				<header className="header">
 					<div className="g-row">
 						<div className="g-col">
-							{
-								auth.authenticated ?
-								<button className="sign-in__button" onClick={this.signOut} type="button">
-									Sign out!!!
-								</button> :
-								<h1>GUEST!!!</h1>
-							}
+                            <div className="header__title">
+                                <i className="header__title fi-checkbox"></i>
+							    <h1 className="header__title">TODO</h1>
+                            </div>
+                            <ul className="header__links">
+                                {
+                                    auth.authenticated ?
+                                    <li><button className="header__button" onClick={this.signOut} type="button">
+                                        Log out
+                                    </button></li> :
+                                    null
+                                }
+                                <li><a className="header__link--author" href="http://gaoyang.me">
+                                    <i className="header__link--author fi-home"></i>
+                                </a></li>
+                            </ul>
 						</div>
 					</div>
 				</header>
