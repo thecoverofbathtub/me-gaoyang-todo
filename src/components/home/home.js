@@ -14,7 +14,7 @@ export class Home extends Component {
 	}
 
 	render() {
-		const { stories, createStory } = this.props;
+		const { stories, createStory, deleteStory } = this.props;
 
 		return (
 			<div className="g-row">
@@ -42,6 +42,7 @@ export class Home extends Component {
 				<div className="g-col">
 					<StoryList
 						stories={stories}
+                        deleteStory={deleteStory}
 					/>
 				</div>
 			</div>

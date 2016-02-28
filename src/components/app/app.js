@@ -36,7 +36,9 @@ export class App extends Component {
 						<div className="g-col">
                             <div className="header__title">
                                 <i className="header__title fi-checkbox"></i>
-							    <h1 className="header__title">TODO</h1>
+							    <a href="http://todo.gaoyang.me">
+									<h1 className="header__title">TODO</h1>
+								</a>
                             </div>
                             <ul className="header__links">
                                 {

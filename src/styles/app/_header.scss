@@ -25,8 +25,8 @@
   transform: translate(0,0);
 
   &:last-child {
+    margin: 0;
     padding: 0 5px;
-    line-height: 24px;
   }
 }
 
@@ -34,34 +34,20 @@
   @include clearfix;
 
   float: right;
-  // padding: 8px 0;
-  line-height: 24px;
+  margin: 0;
 
   li {
     float: left;
     list-style: none;
-
-    /*
-    &:last-child {
-      margin-left: 12px;
-      padding-left: 12px;
-      border-left: 1px solid #333;
-    }
-
-    &:first-child {
-      border: none;
-    }
-    */
   }
 }
 
 .header__button {
   @include button-hollow;
 
-  margin-bottom: 10px;
   outline: none;
   border: 1px solid #eee;
-  padding: 0;
+  padding: 0 5px;
   height: 32px;
   font-family: inherit;
   font-size: rem-calc(12px);
@@ -69,12 +55,13 @@
   color: $base-font-color;
 
   &:hover {
-    border: 2px solid #bbb;
-    line-height: 30px;
+    border: 1px solid #bbb;
+    line-height: 32px;
   }
 }
 
 .header__link--author {
   font-size: rem-calc(18px);
   color: $base-font-color;
+  padding-left: 5px;
 }

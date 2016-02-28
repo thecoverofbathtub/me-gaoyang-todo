@@ -6,10 +6,12 @@
 'foundation';
 
 .g-row {
-	@include grid-row;
+  @include grid-row;
+  max-width: rem-calc(800px);
 }
 
 .g-col {
-	@include grid-col;
-	width: 100%;
+  @include grid-col;
+  box-sizing: border-box;
+  width: 100%;
 }

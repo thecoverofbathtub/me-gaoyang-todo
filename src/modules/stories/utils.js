@@ -12,6 +12,8 @@ const initialState = {
 };
 
 export function storiesReducer(state=initialState, action) {
+	const items = state.items;
+
 	switch(action.type) {
 		case CREATE_STORY_SUCCESS:
 			return {
@@ -31,12 +33,6 @@ export function storiesReducer(state=initialState, action) {
 					return i.key !== action.payload.key;
 				})
 			}
-
-		// ???
-		/*
-		case SIGN_OUT_SUCCESS:
-			return state;
-		*/
 
 		default:
 			return state;
