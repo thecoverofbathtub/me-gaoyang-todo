@@ -51,13 +51,17 @@ function compile() {
 		presets: ['react', 'es2015', 'stage-2']
     }));
 
-	return bundler.bundle()
+	bundler.bundle()
 		.on('error', function(err) {
 			console.error(err);
 			bundler.emit('end');
 		})
 		.pipe(source('bundle.js'))
-		.pipe(gulp.dest(paths.buildPath));
+		.pipe(gulp.dest(paths.buildPath))
+        .on('end', () => {
+            console.log('JS built ...');
+            watchJs();
+        });
 }
 
 function sass() {
@@ -70,38 +74,50 @@ function sass() {
         }))
         .pipe(gulp.dest(
             paths.buildPath + paths.cssPath
-        ));
+        ))
+        .on('end', () => {
+            console.log('Sass built ...');
+            watchScss();
+        });
 }
 
-function deploy() {
+function deployHTMLAndCSSDep() {
     paths.cssDepPaths.forEach(i => {
         gulp.src(i).pipe(gulp.dest(paths.buildPath + paths.cssPath))
     });
 
     gulp.src('./src/index.html')
-		.pipe(gulp.dest(paths.buildPath));
+		.pipe(gulp.dest(paths.buildPath))
+        .on('end', () => {
+            console.log('HTML and CSS Dep deployed ...');
+        });
 }
 
 function serve() {
     browserSync.init(config.browserSync);
 }
 
-function watch() {
+function watchScss() {
     gulp.watch(['./src/styles/**/*.scss'], ['sass']);
+}
+
+function watchJs() {
+    gulp.watch(['./src/**/*.js'], ['compile']);
 }
 
 gulp.task('clean', clean);
 
+gulp.task('compile', compile);
+
 gulp.task('sass', sass);
 
-gulp.task('build', ['clean'], () => {
+gulp.task('build', () => {
     compile();
     sass();
-    deploy();
+    deployHTMLAndCSSDep();
 });
 
 gulp.task('default', ['clean', 'build'], () => {
-    watch();
     serve();
     console.log('Start serving on', gutil.colors.magenta('localhost:3000'));
 });
