@@ -3,6 +3,7 @@
 const gulp = require('gulp');
 const gplugins = require('gulp-load-plugins')();
 const gutil = require('gulp-util');
+const minify = require('gulp-minify');
 const browserSync = require('browser-sync');
 const browserify = require('browserify');
 const babelify = require('babelify');
@@ -113,6 +114,18 @@ gulp.task('build', () => {
     compile();
     sass();
     deployHTMLAndCSSDep();
+});
+
+gulp.task('compress', function() {
+    gulp.src(paths.buildPath + '/*.js')
+        .pipe(minify({
+            exclude: [],
+            ignoreFiles: []
+        }))
+        .pipe(gulp.dest(paths.buildPath))
+        .on('end', () => {
+            console.log('Minify complete ...');
+        });
 });
 
 gulp.task('default', ['clean', 'build'], () => {

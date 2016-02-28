@@ -28,6 +28,7 @@
     "gulp": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-load-plugins": "latest",
+    "gulp-minify": "0.0.5",
     "gulp-sass": "latest",
     "redux-devtools": "latest"
   },
