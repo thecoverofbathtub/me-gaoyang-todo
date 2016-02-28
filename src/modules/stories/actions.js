@@ -7,6 +7,8 @@ import {
   UPDATE_STORY_SUCCESS
 } from './action-types';
 
+// TODO: validate user input
+
 export function createStory(title) {
 	return (dispatch, getState) => {
 		const { auth, firebase } = getState();

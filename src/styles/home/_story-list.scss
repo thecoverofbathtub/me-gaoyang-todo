@@ -1,0 +1,46 @@
+//===================================================================
+//  STORY LIST
+//===================================================================
+
+.story__item {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  line-height: 18px;
+  outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:before {
+    content: '-';
+    padding-right: 5px;
+  }
+}
+
+.story__buttons {
+  float: right;
+  padding: 8px 0;
+}
+
+.clipboard {
+  margin-right: 5px;
+}
+
+.story__button {
+  @include button-hollow;
+
+  outline: none;
+  border: 1px solid #eee;
+  padding: 0 5px;
+  height: 32px;
+  font-family: inherit;
+  font-size: rem-calc(12px);
+  line-height: 32px;
+  color: $base-font-color;
+
+  &:hover {
+    border: 1px solid #bbb;
+    line-height: 32px;
+  }
+}

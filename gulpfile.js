@@ -60,7 +60,6 @@ function compile() {
 		.pipe(gulp.dest(paths.buildPath))
         .on('end', () => {
             console.log('JS built ...');
-            watchJs();
         });
 }
 
@@ -77,7 +76,6 @@ function sass() {
         ))
         .on('end', () => {
             console.log('Sass built ...');
-            watchScss();
         });
 }
 
@@ -118,8 +116,8 @@ gulp.task('build', () => {
 });
 
 gulp.task('default', ['clean', 'build'], () => {
+    watchJs();
+    watchScss();
     serve();
     console.log('Start serving on', gutil.colors.magenta('localhost:3000'));
 });
-
-// TODO: gulp watch

@@ -45,10 +45,9 @@
 .header__button {
   @include button-hollow;
 
-  margin-bottom: 10px;
   outline: none;
   border: 1px solid #eee;
-  padding: 0;
+  padding: 0 5px;
   height: 32px;
   font-family: inherit;
   font-size: rem-calc(12px);
@@ -56,12 +55,13 @@
   color: $base-font-color;
 
   &:hover {
-    border: 2px solid #bbb;
-    line-height: 30px;
+    border: 1px solid #bbb;
+    line-height: 32px;
   }
 }
 
 .header__link--author {
   font-size: rem-calc(18px);
   color: $base-font-color;
+  padding-left: 5px;
 }
