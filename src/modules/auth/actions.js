@@ -39,6 +39,30 @@ export function initAuth() {
 	};
 }
 
+export function signInWithEmail(email, pw) {
+    return (dispatch, getState) => {
+        const { firebase } = getState();
+
+        firebase.authWithPassword({
+            email: email,
+            password: pw
+        }, function(error, authData) {
+            if (error) {
+                console.error('ERROR @ authWithEmail :', error);
+            }
+            else {
+                dispatch({
+                    type: SIGN_IN_SUCCESS,
+                    payload: authData,
+                    meta: {
+                        timestamp: Date.now()
+                    }
+                });
+            }
+        });
+    }
+}
+
 export function signInWithGoogle() {
 	return authenticateWithThirdParty('google');
 }

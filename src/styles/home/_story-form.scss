@@ -1,0 +1,28 @@
+//===================================================================
+//  STORY INPUT
+//===================================================================
+
+.story-form {
+  margin: 40px 0 10px;
+}
+
+.story-form__input {
+  outline: none;
+  border: 0;
+  border-bottom: 1px dotted #fff;
+  border-radius: 0;
+  padding: 0 0 5px 0;
+  width: 100%;
+  ling-height: 40px;
+  font-family: inherit;
+  font-size: rem-calc(20px);
+  background: transparent;
+
+  &::placeholder {
+    color: #eee;
+  }
+
+  &:focus::placeholder {
+    color: #ccc;
+  }
+}

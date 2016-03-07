@@ -9,34 +9,56 @@ import { StoryList } from './story-list';
 
 export class Home extends Component {
 
+    constructor(props, context) {
+        super(props, context);
+
+        this.onKeyUp = this.onKeyUp.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
 	componentWillMount() {
 		this.props.registerFirebaseListeners();
 	}
 
+    clearInput() {
+        this.refs.titleInput.value = "";
+    }
+
+    onKeyUp(e) {
+        switch (e.key) {
+            case 'Escape': this.clearInput(); break;
+            case 'Enter': this.onSubmit(); break;
+            default: return;
+        }
+    }
+
+    onSubmit() {
+        var title = this.refs.titleInput.value;
+        if (title) {
+            const { createStory } = this.props;
+            createStory(this.refs.titleInput.value);
+        }
+        this.clearInput();
+    }
+
 	render() {
-		const { stories, createStory, deleteStory } = this.props;
+		const { stories, deleteStory } = this.props;
 
 		return (
 			<div className="g-row">
 				<div className="g-col">
-					<input
-						autoComplete="off"
-						autoFocus
-						className="story-form__input"
-						maxLength="128"
-						placeholder="Show me what you got!"
-						type="text"
-						ref="titleInput"
-						onKeyPress={e => {
-							if (e.key === 'Enter') {
-								var title = this.refs.titleInput.value;
-								if (title) {
-									createStory(this.refs.titleInput.value);
-								}
-								this.refs.titleInput.value = "";
-							}
-						}}
-					/>
+					<div className="story-form">
+                        <input
+                        autoComplete="off"
+                        autoFocus
+                        className="story-form__input"
+                        maxLength="128"
+                        placeholder="Show me what you got!"
+                        type="text"
+                        ref="titleInput"
+                        onKeyUp={this.onKeyUp}
+                        />
+                    </div>
 				</div>
 
 				<div className="g-col">

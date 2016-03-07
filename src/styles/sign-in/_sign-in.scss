@@ -9,7 +9,7 @@
 'foundation';
 
 .sign-in {
-  margin-top: 90px;
+  margin-top: 40px;
   max-width: 300px;
 }
 
@@ -40,4 +40,35 @@
     border: 2px solid #bbb;
     line-height: 46px;
   }
+}
+
+@mixin sign-in__input {
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+  padding: 0 0 5px 0;
+  margin: 0 0 20px 0;
+  width: 100%;
+  ling-height: 40px;
+  color: $base-font-color;
+  font-family: inherit;
+  font-size: rem-calc(18px);
+  background: transparent;
+
+  &::placeholder {
+    color: #eee;
+  }
+
+  &:focus::placeholder {
+    color: #ddd;
+  }
+}
+
+.sign-in__email {
+  @include sign-in__input;
+}
+
+.sign-in__pw {
+  @include sign-in__input;
 }
