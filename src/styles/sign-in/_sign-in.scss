@@ -28,7 +28,7 @@
   margin-bottom: 10px;
   outline: none;
   width: 100%;
-  border: 1px solid #eee;
+  border: 1px solid $base-lighter-color;
   padding: 0;
   height: 48px;
   font-family: inherit;
@@ -37,7 +37,7 @@
   color: $base-font-color;
 
   &:hover {
-    border: 2px solid #bbb;
+    border: 2px solid $base-light-color;
     line-height: 46px;
   }
 }
@@ -45,7 +45,7 @@
 @mixin sign-in__input {
   outline: none;
   border: 0;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid $base-lightest-color;
   border-radius: 0;
   padding: 0 0 5px 0;
   margin: 0 0 20px 0;
@@ -57,11 +57,11 @@
   background: transparent;
 
   &::placeholder {
-    color: #eee;
+    color: $base-lighter-color;
   }
 
   &:focus::placeholder {
-    color: #ddd;
+    color: $base-light-color;
   }
 }
 

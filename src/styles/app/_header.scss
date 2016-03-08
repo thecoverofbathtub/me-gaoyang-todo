@@ -46,7 +46,7 @@
   @include button-hollow;
 
   outline: none;
-  border: 1px solid #eee;
+  border: 0;
   padding: 0 5px;
   height: 32px;
   font-family: inherit;
@@ -55,8 +55,7 @@
   color: $base-font-color;
 
   &:hover {
-    border: 1px solid #bbb;
-    line-height: 32px;
+    color: $base-light-color;
   }
 }
 

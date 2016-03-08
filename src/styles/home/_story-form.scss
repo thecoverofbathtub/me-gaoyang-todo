@@ -9,20 +9,21 @@
 .story-form__input {
   outline: none;
   border: 0;
-  border-bottom: 1px dotted #fff;
+  border-bottom: 1px dotted $base-lightest-color;
   border-radius: 0;
   padding: 0 0 5px 0;
   width: 100%;
-  ling-height: 40px;
+  line-height: 40px;
   font-family: inherit;
   font-size: rem-calc(20px);
+  color: $base-font-color;
   background: transparent;
 
   &::placeholder {
-    color: #eee;
+    color: $base-lighter-color;
   }
 
   &:focus::placeholder {
-    color: #ccc;
+    color: $base-light-color;
   }
 }
