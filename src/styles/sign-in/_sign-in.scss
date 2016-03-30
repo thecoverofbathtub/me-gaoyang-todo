@@ -16,7 +16,7 @@
 .sign-in__heading {
   margin-bottom: 36px;
   color: $base-font-color;
-  font: inherit;
+  font-family: $base-font-sans;
   font-size: 30px;
   font-weight: 300;
   text-align: center;
@@ -31,7 +31,7 @@
   border: 1px solid $base-lighter-color;
   padding: 0;
   height: 48px;
-  font-family: inherit;
+  font-family: $base-font-serif;
   font-size: rem-calc(18px);
   line-height: 48px;
   color: $base-font-color;
@@ -52,7 +52,7 @@
   width: 100%;
   ling-height: 40px;
   color: $base-font-color;
-  font-family: inherit;
+  font-family: $base-font-serif;
   font-size: rem-calc(18px);
   background: transparent;
 
