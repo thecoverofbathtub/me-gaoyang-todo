@@ -53,10 +53,10 @@ export class SignIn extends Component {
             const { signInWithEmail } = this.props;
             signInWithEmail(email, pw, rememberMe);
 
-            // clear input boxes
-            this.refs.signInEmail.value = "";
-            this.refs.signInPassword.value = "";
-            this.refs.willRememberMe.checked = false;
+            // // clear input boxes
+            // this.refs.signInEmail.value = "";
+            // this.refs.signInPassword.value = "";
+            // this.refs.willRememberMe.checked = false;
         }
 	}
 
