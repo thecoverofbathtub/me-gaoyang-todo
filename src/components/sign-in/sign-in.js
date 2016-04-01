@@ -47,14 +47,16 @@ export class SignIn extends Component {
         // check value
         const email = this.refs.signInEmail.value;
         const pw = this.refs.signInPassword.value;
+        const rememberMe = this.refs.willRememberMe.checked;
 
         if (email.length !== 0 && pw.length !== 0) {
             const { signInWithEmail } = this.props;
-            signInWithEmail(email, pw);
+            signInWithEmail(email, pw, rememberMe);
 
             // clear input boxes
             this.refs.signInEmail.value = "";
             this.refs.signInPassword.value = "";
+            this.refs.willRememberMe.checked = false;
         }
 	}
 
@@ -86,6 +88,13 @@ export class SignIn extends Component {
                            ref="signInPassword"
                            onKeyUp={this.onKeyUpPassword}
                     />
+                    <div className="sign-in__label">
+                        <input className="sign-in__checkbox"
+                           type="checkbox"
+                           ref="willRememberMe"
+                        />
+                        <label>Remember Me</label>
+                    </div>
 					<button className="sign-in__button" onClick={this.signIn} type="button">Log in</button>
 					<button className="sign-in__button" onClick={signInWithFacebook} type="button">Facebook</button>
 					<button className="sign-in__button" onClick={signInWithGoogle} type="button">Google</button>

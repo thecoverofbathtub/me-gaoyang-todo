@@ -39,7 +39,7 @@ export function initAuth() {
 	};
 }
 
-export function signInWithEmail(email, pw) {
+export function signInWithEmail(email, pw, rememberMe) {
     return (dispatch, getState) => {
         const { firebase } = getState();
 
@@ -59,7 +59,9 @@ export function signInWithEmail(email, pw) {
                     }
                 });
             }
-        });
+        }, {
+			remember: rememberMe ? 'default' : 'sessionOnly'
+		});
     }
 }
 

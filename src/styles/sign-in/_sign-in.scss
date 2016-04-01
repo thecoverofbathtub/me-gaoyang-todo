@@ -14,7 +14,7 @@
 }
 
 .sign-in__heading {
-  margin-bottom: 36px;
+  margin-bottom: 16px;
   color: $base-font-color;
   font-family: $base-font-sans;
   font-size: 30px;
@@ -48,7 +48,7 @@
   border-bottom: 1px solid $base-lightest-color;
   border-radius: 0;
   padding: 0 0 5px 0;
-  margin: 0 0 20px 0;
+  margin: 20px 0 0 0;
   width: 100%;
   ling-height: 40px;
   color: $base-font-color;
@@ -71,4 +71,11 @@
 
 .sign-in__pw {
   @include sign-in__input;
+}
+
+.sign-in__label {
+  margin: 10px 0 5px 0;
+  color: $base-font-color;
+  font-family: $base-font-serif;
+  font-size: rem-calc(15px);
 }
